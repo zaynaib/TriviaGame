@@ -25,9 +25,9 @@ function counter(count){
 		count = count-1;
 	}
 }
+
 function startCountdown(){
 	setInterval(counter(80), 1000);
-
 };
 
 var quizQuestions =[
@@ -79,10 +79,30 @@ For basic quiz
 
 //want to loop through the array and display the questions and answers to each object
 
+ var myQuiz = $("<div>");
+ myQuiz.addClass("myPonyQuiz");
+ $("#quiz").append(myQuiz);
+
 for (var i = 0 ; i<quizQuestions.length; i++) {
-	console.log(quizQuestions[i].question);
-	console.log(quizQuestions[i].answer);
+	//setup timer for each
+	var questionDiv = $('<p>');
+	questionDiv.addClass("question" +i);
+	questionDiv.text(quizQuestions[i].question);
+	$("#quiz").append(questionDiv);
+	// <input type="radio" name="gender" value="male" checked> Male<br>
+	var a = quizQuestions[i].a;
+	var b = quizQuestions[i].b;
+	var c = quizQuestions[i].c;
+	console.log(a);
+	$("#quiz").append("<input type='radio' value='"+a+"'>"+ a);
+	$("#quiz").append("<input type='radio' value='"+b+"'>"+ b);
+	$("#quiz").append("<input type='radio' value='"+c+"'>"+ c);
+
 }
+
+
+
+
 //I want to loop through the answers a,b,c and display them as a radio button
 
 //display object keys
