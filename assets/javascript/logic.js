@@ -30,38 +30,6 @@ function startCountdown(){
 
 };
 
-//quiz questions
-
-//https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON
-
-/*
-
-var quizQuestions =
-
-	{
-	question1: "What type of pony is AppleJack?",
-	a:"Earth",
-	b:"Unicorn",
-	c:"Pegasi",
-	
-	answer:"Earth"
-	},
-
-	{
-	question2: "What type of pony is FlutterShy?",
-	a:"Earth",
-	b:"Unicorn",
-	c:"Pegasi",
-	
-	answer:"Pegasi"
-	}
-*/
-
-var cars = ["Saab", "Volvo", "BMW"];
-var cars1 =[{name:"Saab"},{name:"Volvo"},{name:"BMW"}];
-//console.log(cars1[0].name);
-
-
 var quizQuestions =[
 	{
 		question: "What type of pony is AppleJack?",
@@ -90,8 +58,6 @@ var quizQuestions =[
 	}
 
 	];
-
-//console.log(quizQuestions[2].question);
 
 /*
 	For advanced quiz
