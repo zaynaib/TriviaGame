@@ -24,7 +24,7 @@ function answerPage(){
 
 //timer
 
-var time = 10;
+var time = 60;
 
 function start() {
   intervalId = setInterval(count, 1000);
@@ -40,6 +40,11 @@ console.log("stopping");
  function count() {
 
  time--;
+ var timeDisplay = $("<p>");
+ timeDisplay.attr("id","time");
+ timeDisplay.text(time+"");
+ $("#quiz").append(timeDisplay);
+
  console.log(time);
  if(time ===0){
  	stop();
@@ -47,7 +52,7 @@ console.log("stopping");
  }
 
  }
- //start();
+ start();
 
 
 
