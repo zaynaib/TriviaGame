@@ -9,26 +9,53 @@
 	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures
 
 */
-//setInterval(function, milliseconds);
-//set up for timer function
 
-var score =0;
+	var wrong =0;
+	var right=0;
 
-//window.onload = function(){
-$("#start").on("click", startCountdown);
-//};
 
-function counter(count){
-	//var count = 60;
-	while(count != 0){
-		console.log(count);
-		count = count-1;
-	}
+function answerPage(){
+	$("#quiz").empty();
+	var rightAnswerDisplay = $("#results").append("<p id='answers'>");
+	rightAnswerDisplay.html("Correct: " +right +"<br>" + "Wrong:"+ wrong);
+	console.log("woohoo!");
 }
 
-function startCountdown(){
-	setInterval(counter(80), 1000);
-};
+
+//timer
+
+var time = 10;
+
+function start() {
+  intervalId = setInterval(count, 1000);
+}
+
+
+function stop() {
+
+console.log("stopping");
+  clearInterval(intervalId);
+}
+
+ function count() {
+
+ time--;
+ console.log(time);
+ if(time ===0){
+ 	stop();
+ 	answerPage();
+ }
+
+ }
+ //start();
+
+
+
+
+
+
+
+
 
 var quizQuestions =[
 	{
@@ -55,9 +82,67 @@ var quizQuestions =[
 		b:"Unicorn",
 		c:"Pegasi",
 		answer:"Unicorn"
+	},
+
+	{
+		question: "What type of pony is Twilight Sparkle?",
+		a:"Earth",
+		b:"Alicorn",
+		c:"Pegasi",
+		answer:"Alicorn"
+	},
+
+	{
+		question: "Who is AppleJack's little sister?",
+		a:"Sweetie Bell",
+		b:"Apple Bloom",
+		c:"Scootloo",
+		answer:"Apple Bloom"
+	},
+
+	{
+		question: "Who is the princess of the Sun?",
+		a:"Princess Twilight",
+		b:"Princess Celestia",
+		c:"Princess Cadance",
+		answer:"Princess Celestia"
+	},
+
+	{
+		question: "Who is Rarity sister?",
+		a:"Scootloo",
+		b:"Sweetie Bell",
+		c:"Apple Bloom",
+		answer:"Sweetie Bell"
+	},
+
+	{
+		question: "Who is Twilight's oldest friend?",
+		a:"Pinky Pie",
+		b:"Spike",
+		c:"Owlowiscious",
+		answer:"Spike"
+	},
+
+	{
+		question: "What type of animal does FlutterShy have for a pet?",
+		a:"Rabbit",
+		b:"Toothless Aligator",
+		c:"Dog",
+		answer:"Rabbit"
+	},
+
+	{
+		question: "Who rules the Crystal Kingdom?",
+		a:"Princess Luna",
+		b:"Princess Twilght",
+		c:"Princess Cadance",
+		answer:"Princess Cadance"
 	}
 
 	];
+
+	
 
 /*
 	For advanced quiz
@@ -77,9 +162,8 @@ For basic quiz
 
 */
 
-//want to loop through the array and display the questions and answers to each object
 
-
+function setup(){
 
 for (var i = 0 ; i<quizQuestions.length; i++) {
 	//setup timer for each
@@ -93,12 +177,8 @@ for (var i = 0 ; i<quizQuestions.length; i++) {
 
 
 	$("#quiz").append(questionDiv);
-	// <input type="radio" name="gender" value="male" checked> Male<br>
-	console.log(a);
-	//var radioA= $("#quiz").append("<input type='radio' value='"+a+"'>"+ a);
-	//$(questionDiv).appendChild(radioA);
-	//$(questionDiv).append("<input type='radio' value='"+b+"'>"+ b);
-	//$(questionDiv).append("<input type='radio' value='"+c+"'>"+ c);
+	//console.log(a);
+	
 
 }
 
@@ -110,14 +190,18 @@ $('#quiz').on('change', 'input', function() {
 	var correctAns = quizQuestions[questionIndex].answer;
 	
 	if (userAns === correctAns){
-		score++
-		console.log(score);
+		right++;
+		console.log("Correct:" +right);
 	} else {
-		console.log('wrong');
+		wrong++;
+		console.log("Wrong: " + wrong);
 	}
 	console.log(correctAns);
 })
 
+}
+
+setup();
 
 
 //display object keys
