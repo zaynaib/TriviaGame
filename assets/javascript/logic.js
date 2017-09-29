@@ -79,31 +79,46 @@ For basic quiz
 
 //want to loop through the array and display the questions and answers to each object
 
- var myQuiz = $("<div>");
- myQuiz.addClass("myPonyQuiz");
- $("#quiz").append(myQuiz);
+
 
 for (var i = 0 ; i<quizQuestions.length; i++) {
 	//setup timer for each
-	var questionDiv = $('<p>');
-	questionDiv.addClass("question" +i);
-	questionDiv.text(quizQuestions[i].question);
-	$("#quiz").append(questionDiv);
-	// <input type="radio" name="gender" value="male" checked> Male<br>
 	var a = quizQuestions[i].a;
 	var b = quizQuestions[i].b;
 	var c = quizQuestions[i].c;
+	
+//I want to loop through the answers a,b,c and display them as a radio button later
+	var questionDiv = $("<div class='question' id='panel" + i +"'><div>"+quizQuestions[i].question+"</div><div><input name='" +i+"ya' type='radio'><span>"+a+"</span></input><input name='"+i+"ya' type='radio'><span>"+b+"</span></input><input name='"+i+"ya' type='radio'><span>"+c+"</span></input></div></div>");
+	
+
+
+	$("#quiz").append(questionDiv);
+	// <input type="radio" name="gender" value="male" checked> Male<br>
 	console.log(a);
-	$("#quiz").append("<input type='radio' value='"+a+"'>"+ a);
-	$("#quiz").append("<input type='radio' value='"+b+"'>"+ b);
-	$("#quiz").append("<input type='radio' value='"+c+"'>"+ c);
+	//var radioA= $("#quiz").append("<input type='radio' value='"+a+"'>"+ a);
+	//$(questionDiv).appendChild(radioA);
+	//$(questionDiv).append("<input type='radio' value='"+b+"'>"+ b);
+	//$(questionDiv).append("<input type='radio' value='"+c+"'>"+ c);
 
 }
 
+//check to see if button checked is equal to the answer
+
+$('#quiz').on('change', 'input', function() {
+	var userAns =$(this).next().text();
+	var questionIndex = $(this).closest('.question').attr('id').match(/\d+/g);
+	var correctAns = quizQuestions[questionIndex].answer;
+	
+	if (userAns === correctAns){
+		score++
+		console.log(score);
+	} else {
+		console.log('wrong');
+	}
+	console.log(correctAns);
+})
 
 
-
-//I want to loop through the answers a,b,c and display them as a radio button
 
 //display object keys
 //console.log(Object.keys(quizQuestions))
