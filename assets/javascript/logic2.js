@@ -8,12 +8,8 @@
 	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures
 */
 
-//Setup Variables
-
-
-//counter for right and wrong answers
-var wrong =0;
-var right=0;
+	var wrong =0;
+	var right=0;
 
 
 function answerPage(){
@@ -24,37 +20,30 @@ function answerPage(){
 }
 
 
-//Timer
+//timer
 
-//Set Time to 60 seconds
 var time = 60;
 
-//
 function start() {
   intervalId = setInterval(count, 1000);
 }
 
 
-//When the time hits zero stop the timer with the clearInterval
 function stop() {
 
-	//lets me know that the timer is stopping
-	console.log("stopping");
-	clearInterval(intervalId);
+console.log("stopping");
+  clearInterval(intervalId);
 }
 
-//The timer will count down to zero. 
-//Once tthe timer hits zero it will invoke the stop function
  function count() {
 
  time--;
  var timeDisplay = $("<p>");
  timeDisplay.attr("id","time");
  timeDisplay.text(time+"");
- $("#timerResults").empty().append(timeDisplay);
+ $("#quiz").append(timeDisplay);
 
  console.log(time);
- //
  if(time ===0){
  	stop();
  	answerPage();
@@ -63,7 +52,14 @@ function stop() {
  }
  start();
 
-//All the different quiz questions that will show onto the quiz
+
+
+
+
+
+
+
+
 var quizQuestions =[
 	{
 		question: "What type of pony is AppleJack?",
@@ -167,54 +163,29 @@ var quizQuestions =[
 /*
 For basic quiz
 */
+
+
 function setup(){
 
 for (var i = 0 ; i<quizQuestions.length; i++) {
-
-	//Extract answers from each question object from the quiz questions array
+	//setup timer for each
 	var a = quizQuestions[i].a;
 	var b = quizQuestions[i].b;
 	var c = quizQuestions[i].c;
-	var question = quizQuestions[i].question;
-
-	//create a new div element for each question object
-	var questionDiv = $('<div>');
-
-	// add the question class to each question object
-	$(questionDiv).addClass('question');
-
-	//give each question div a unique id of naming convention panel + array index
-	$(questionDiv).attr('id','panel'+i);
-
-	//add the quiz questions to the DOM
-	$(questionDiv).append(question);
-
-
-	//Create the radio button for each potential answer to each question
-	//each input will have a name consistent of the quesiont array index and the letter
-	//for example the first element in the array will have a name of 0a, 0b, 0c etc
-
-	var htmlInput =
-	`
-		<input name = ${i + 'a'} type='radio'><span>${a}</span>
-		<input name = ${i + 'b'} type='radio'><span>${b}</span>
-		<input name = ${i + 'c'} type='radio'><span>${c}</span>
-
-	`
 	
-	// Add the quiz answers to each question
-	$(questionDiv).append(htmlInput);
+//I want to loop through the answers a,b,c and display them as a radio button later
+	var questionDiv = $("<div class='question' id='panel" + i +"'><div>"+quizQuestions[i].question+"</div><div><input name='" +i+"ya' type='radio'><span>"+a+"</span></input><input name='"+i+"ya' type='radio'><span>"+b+"</span></input><input name='"+i+"ya' type='radio'><span>"+c+"</span></input></div></div>");
+	
 
 
-	//Add the questions and answers onto the DOM, into the form
 	$("#quiz").append(questionDiv);
+	//console.log(a);
 	
 
 }
 
 //check to see if button checked is equal to the answer
 
-//
 $('#quiz').on('change', 'input', function() {
 	var userAns =$(this).next().text();
 	var questionIndex = $(this).closest('.question').attr('id').match(/\d+/g);
@@ -234,3 +205,13 @@ $('#quiz').on('change', 'input', function() {
 
 setup();
 
+
+//display object keys
+//console.log(Object.keys(quizQuestions))
+//if the user choose the correct answer give them a point
+//else knock them a point
+
+//$("#quiz").append('<input type="radio" name="Ace" value="1" id="rank">'+ quizQuestions.a)
+
+
+//
